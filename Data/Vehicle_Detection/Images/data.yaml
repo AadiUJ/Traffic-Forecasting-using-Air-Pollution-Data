@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 4
+names: ['Car_Four_Wheels', 'Cars', 'bus', 'truck']
+
+roboflow:
+  workspace: kings-college-school
+  project: forecasting-traffic-using-collec
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/kings-college-school/forecasting-traffic-using-collec/dataset/2
