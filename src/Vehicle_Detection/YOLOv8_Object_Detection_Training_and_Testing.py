@@ -10,9 +10,6 @@ Original file is located at
 from google.colab import drive
 drive.mount('/content/Mydrive')
 
-from google.colab import drive
-drive.mount('/content/drive')
-
 ! pip install ultralytics
 
 """### Use of Custom Dataset
@@ -27,12 +24,12 @@ drive.mount('/content/drive')
 #inside the yaml file correct paths must there
 train_data = "/content/drive/Shareddrives/1:1 Aaditya Jhamb/Vehicle_Object_Detection/data.yaml"
 #specify a saving path to save all the models and training statitics
-model_saving = "/content/drive/MyDrive/AIClub/ObjectDetection/HatDetection/Model/yolov8_custom"
+#model_saving = "/content/drive/MyDrive/Model/yolov8_custom"
 #Run the training script
 ! yolo task=detect mode=train model=yolov8s.pt data={train_data} epochs=10 imgsz=640 name={model_saving}
 
 train_data = "/content/drive/Shareddrives/1:1 Aaditya Jhamb/Vehicle_Object_Detection/data.yaml"
-model_saving = "/content/drive/MyDrive/AIClub/ObjectDetection/HatDetection/Model/yolov8_custom"
+model_saving = "/content/drive/MyDrive/Model/yolov8_custom"
 learning_rate = 0.01
 # Enclose the file path in double quotes
 train_command = f"yolo task=detect mode=train model=yolov8s.pt data='{train_data}' epochs=200 lr0={learning_rate} imgsz=640 name='{model_saving}'"
@@ -48,12 +45,12 @@ train_command = f"yolo task=detect mode=train model=yolov8s.pt data='{train_data
 
 #best model weight is saved to saved location and under the weight folder, best.pt file can be found.
 #that's the weight which will be used to predict
-best_model = "/content/drive/MyDrive/AIClub/ObjectDetection/HatDetection/Model/yolov8_custom/weights/best.pt"
+best_model = "/best.pt"
 
 #run predictions on the validation data
 ! yolo task=detect mode=val model={best_model} data={train_data}
 
-best_model = "/content/drive/MyDrive/AIClub/ObjectDetection/HatDetection/Model/yolov8_custom/weights/best.pt"
+best_model = "/best.pt"
 
 # Enclose the file paths in double quotes
 val_command = f"yolo task=detect mode=val model='{best_model}' data='{test_data}'"
@@ -62,7 +59,7 @@ import shutil
 source_folder = 'runs/detect/val'
 
 # Destination folder path in the shared drive (change to your destination path)
-destination_folder = '/content/drive/Shareddrives/1:1 Aaditya Jhamb/Results/epochs200_lr0.01'
+destination_folder = '/content/drive/MyDrive/Results/epochs200_lr0.01'
 
 # Run the validation script
 ! {val_command}
@@ -79,7 +76,7 @@ shutil.copytree(source_folder, destination_folder)
 """
 
 #location of the test images
-test_images = "/content/drive/MyDrive/AIClub/ObjectDetection/HatDetection/Data/test/images"
+test_images = "/content/drive/MyDrive/Data/test/images"
 
 #run prediction on test data
 ! yolo task=detect mode=predict model={best_model} conf=0.25 source={test_images}
