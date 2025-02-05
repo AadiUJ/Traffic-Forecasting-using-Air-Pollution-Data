@@ -7,8 +7,8 @@ drive.mount('/content/drive',force_remount=True)
 # Read the dataset
 
 import pandas as pd
-dataset = pd.read_csv("/content/drive/Shareddrives/1:1 Aaditya Jhamb/Sensor Reading Results/Code/sensorDataUK_withHotspot3.csv")
-dataset_v2 = pd.read_csv("/content/drive/Shareddrives/1:1 Aaditya Jhamb/Sensor Reading Results/Code/sensorDataUK_withHotspot3v2.csv")
+dataset = pd.read_csv("Data/Air_Quality/Air_Quality_Sensor_Readings.csv")
+dataset_v2 = pd.read_csv("Data/Air_Quality/Air_Quality_Sensor_Readings_v2.csv")
 dataset = pd.concat([dataset, dataset_v2], axis=0)
 
 dataset
@@ -59,7 +59,7 @@ plt.show()
 """# Day 24 of September"""
 
 import pandas as pd
-dataset = pd.read_csv("/content/drive/Shareddrives/1:1 Aaditya Jhamb/Sensor Reading Results/Code/shifted_sensorDataUK_withHotspot3v3.csv")
+dataset = pd.read_csv("Data/Air_Quality/Shifted_Sensor_Data.xlsx")
 
 dataset_v1 = dataset.drop(["Timestamp","pm25", "sound"], axis=1)
 
@@ -105,14 +105,14 @@ plt.title('Correlation Analysis')
 plt.show()
 
 import pandas as pd
-dataset_with_image_info = pd.read_csv('/content/drive/Shareddrives/1:1 Aaditya Jhamb/runs/detect/train/weights/Test_sensorDataUK_withHotspot3-1_with_imagedata.csv')
+dataset_with_image_info = pd.read_csv('Data/Air_Quality/Sensor_Data_with_image_data.csv')
 
 # Convert the 'Timestamp' column to datetime format
 dataset_with_image_info['Timestamp'] = pd.to_datetime(dataset_with_image_info['Timestamp'], unit='s')
 dataset_with_image_info.head()
 
 # This is the original data to which the image path was added and hence we know the number of vehicles present at each row
-dataset = pd.read_csv("/content/drive/Shareddrives/1:1 Aaditya Jhamb/Sensor Reading Results/Code/sensorDataUK_withHotspot3.csv")
+dataset = pd.read_csv("Data/Air_Quality/Sensor_Data_v2.csv")
 
 """# Coorelation analysis when image analysis is added to it"""
 
@@ -195,7 +195,7 @@ correlation_dict = time_shifted_correlation(list_1, list_2, 30)
 max(correlation_dict.values())
 
 import pandas as pd
-dataset_with_image_info = pd.read_csv("/content/drive/Shareddrives/1:1 Aaditya Jhamb/runs/detect/train/weights/Test_sensorDataUK_withHotspot3-1_with_imagedata_mean_vehicle_count.csv")
+dataset_with_image_info = pd.read_csv("Data/Air_Quality/Sensor_Data_with_imagedata_mean_vehicl_count.csv")
 # Convert the 'Timestamp' column to datetime format
 dataset_with_image_info['Timestamp'] = pd.to_datetime(dataset_with_image_info['Timestamp'], unit='s')
 dataset_with_image_info.head()
